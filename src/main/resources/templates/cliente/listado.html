@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TechShop</title> <meta charset="UTF-8"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th: replace="layout/plantilla :: header"/>
+        <div class="contenido">
+            <h2 th:text="#(cliente.titulo}" Listado de Clientes</h2>
+            ca th:href-"@{/cliente/nuevo} th:text="#(cliente.nuevo}>Nuevo Cliente</a>
+            <div th:if="{clientes != null and !clientes. empty}"
+                <table border="1">
+                     <thead> <tr>
+                             <th th:text="#(cliente.nombre}">N mbre</th>
+                             <th th:text="t(cliente.apellidos}>Apellidos</th>
+                             <th th:text="#{cliente.correo}">C rreo</th>
+                             <th th:text="#{cliente.telefono}": Teléfono</th>
+                             <th th:text="#{cliente.limite}">L. mite</th>
+                             <th th:text="#(accion.eliminar}">i liminar</th>
+                             <th th:text="#(accion.actualizar} >Modificar</th> </tr>
+                     </thead>
+                     <tbody> <tr th:each="cliente : +{clientes}">
+                             <td th:text="(cliente.nombre}"></td>
+                             <td th:text="${cliente.apellidos}"></td>
+                             <td th:text="${cliente.correo}"></td>
+                             <td th:text="5(cliente.telefono}"></td>
+                             <td th:text="(#numberS. formatDecimal (cliente.credito.1imite, 3,2) }"
+                                 style="text-align: right"></td>
+                             <td><a th:href="@{/cliente/eliminar/} + ${cliente.idCliente}"
+                                    th:text="#{accion.eliminar}">liminar</a></td
+                             <td><a th:href="e{/cliente/modificar/} + {cliente.idcliente}"
+                                    th:text="#{accion.actualizar}"> fodificar</a></td>
+                         </tr>
+                     </tbody>
+                </table>
+            </div>
+            <div th:if="${clientes == null or clientes.empty}">
+                <p th:text="#{cliente.-no_mostrar}">Io tenemos clientes que mostrar...</p>
+                  CATP/>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>

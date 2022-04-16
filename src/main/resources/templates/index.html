@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+khtml xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml
+                                                         
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8"/>
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace-"layout/plantilla :: header"/>
+        <div class="contenido">
+            <h2 th:text="#{index.titulo}" Nuestros_Articulos</h2>
+            <div th:if="${articulos != null and !articulos.empty}">
+                <table border-"1">
+                    <thead>
+                         <tr>
+                             <th th:text="#(articulo.descripcion) ">Descripcion</th>
+                             <th th:text="#(articulo.precio} ">Precio</th>
+                             <th th:text="#(articulo.comprar)">C mpra</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                         <tr th:each="articulo : $(articulos}">
+                             <td th:text="${articulo.descripcion}"></td>
+                             <td th:text="${#numbers.formatDecimal (articulo.precio, 3, 2) }"
+                                 style="text-align: right"></td>
+                             <td><a th:href="{/carrito/agregar/) + $(articulo.idArticulo}"
+                                    th:text="#({accion.agregar}">Agrega</a></td>
+                         </tr>
+                     </tbody>
+                </table>
+                               Hends-Ap
+            </div>
+            <div th:if="${articulos == null or articulos.empty}">
+                <p th:text="e{articulo.no mostrar}">No tenemos articulos que mostrar... </p>
+        </div>
+        <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>
